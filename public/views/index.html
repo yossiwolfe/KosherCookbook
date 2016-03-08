@@ -1,0 +1,52 @@
+<!-- public/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <base href="/">
+
+    <title>Kosher Cookbook</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
+
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/RecipeCtrl.js"></script>
+    <script src="js/services/RecipeService.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="nodularCookbookApp" ng-controller="RecipeController">
+<div class="container">
+
+    <!-- HEADER -->
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Kosher Cookbook [BETA]</a>
+        </div>
+
+        <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+        <ul class="nav navbar-nav">
+            <li><a href="/add-recipe">Add a Recipe</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav">
+            <li><a href="/view-all-recipes">View All Recipes</a></li>
+        </ul>
+    </nav>
+
+    <!-- ANGULAR DYNAMIC CONTENT -->
+    <div ng-view></div>
+
+</div>
+</body>
+</html>

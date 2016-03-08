@@ -1,0 +1,118 @@
+<!-- public/views/recipe.html -->
+<h1 ng-show="showLoading">Please wait...</h1>
+<div class="jumbotron text-center" ng-hide="showLoading">
+    <h1>{{recipeMethod}} a Recipe</h1>
+
+    <!-- FORM -->
+    <form ng-submit="processForm()" ng-init="init()">
+        <!-- NAME -->
+        <div id="name-group" class="form-group">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h3>Recipe Title</h3>
+                    <input type="text" id="name" class="form-control" placeholder="Recipe Name" required ng-model="formData.name">
+                </div>
+                <div class="col-sm-4">
+                    <h3>Author</h3>
+                    <input type="text" name="author" class="form-control" placeholder="Author" ng-model="formData.author">
+                </div>
+                <div class="col-sm-2">
+                    <h3>Prep Time</h3>
+                    <input type="number" name="prepTimeMinutes" class="form-control" ng-model="formData.prepTimeMinutes"> minutes
+                </div>
+                <div class="col-sm-2">
+                    <h3>Cook Time</h3>
+                    <input type="number" name="cookTimeMinutes" class="form-control" ng-model="formData.cookTimeMinutes"> minutes
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <h3>Status</h3>
+                    <select class="form-control" ng-model="formData.kosherStatus">
+                        <option value="pareve">Pareve</option>
+                        <option value="dairy" selected="selected">Dairy</option>
+                        <option value="meat" selected="selected">Meat</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Categories</h3>
+                    <select class="form-control" ng-model="formData.categories" multiple="multiple">
+                        <option ng-repeat="category in categories">{{category.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <br />
+            <h3>Ingredients <a href="#" ng-click="removeIngredient()"><i class="fa fa-minus-circle fa-lg"></i></a><a href="#" ng-click="addIngredient()"><i class="fa fa-plus-circle fa-lg"></i></a></h3>
+            <div ng-repeat="i in getNumber(numberOfIngredients) track by $index">
+                <label>Ingredient {{$index+1}}:</label>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label>Quantity</label>
+                        <input type="text" class="form-control" ng-model="formData.ingredients[$index].quantity" />
+                    </div>
+                    <div class="col-sm-1">
+                        <label>Type</label>
+                        <input type="text" class="form-control" ng-model="formData.ingredients[$index].quantityType" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="formData.ingredients[$index].name" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Prep Method</label>
+                        <input type="text" class="form-control" ng-model="formData.ingredients[$index].prepMethod" />
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Note</label>
+                        <input type="text" class="form-control" ng-model="formData.ingredients[$index].note" />
+                    </div>
+                    <div class="col-sm-1">
+                        <label>Optional</label>
+                        <input type="checkbox" class="form-control" ng-model="formData.ingredients[$index].optional" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <h3>Instructions <a href="#" ng-click="removeInstruction()"><i class="fa fa-minus-circle fa-lg"></i></a><a href="#" ng-click="addInstruction()"><i class="fa fa-plus-circle fa-lg"></i></a></h3>
+            <div ng-repeat="i in getNumber(numberOfSteps) track by $index">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <strong>Step {{$index+1}}</strong>
+                    </div>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control" ng-model="formData.instructions[$index].text" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Rating</label>
+                    <select name="authorRating" class="form-control" ng-model="formData.authorRating">
+                        <option ng-repeat="i in getNumber(5) track by $index" value="{{$index + 1}}">{{$index+1}}</i></option>
+                    </select>
+                </div>
+                <div class="col-sm-9">
+                    <label>Notes</label>
+                    <textarea class="form-control" ng-model="formData.notes"></textarea>
+                </div>
+            </div>
+            <span class="help-block"></span>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="btn btn-success btn-lg btn-block">
+            <span class="glyphicon glyphicon-flash"></span> Submit!
+        </button>
+    </form>
+
+    <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
+<!--
+    <pre>
+    {{ formData }}
+</pre>
+-->
+</div>

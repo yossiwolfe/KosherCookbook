@@ -1,0 +1,33 @@
+<!-- public/views/view_recipe.html -->
+
+<div class="jumbotron text-center" ng-init="init()">
+    <h1>{{viewData.name}}</h1>
+    <h3>Contributed by {{viewData.author}}</h3>
+</div>
+<div class="row">
+    <div class="col-sm-4 text-center"><h3>Prep Time: {{viewData.prepTimeMinutes}} minutes</h3></div>
+    <div class="col-sm-4 text-center"><h3>Cooking Time: {{viewData.cookTimeMinutes}} minutes</h3></div>
+    <div class="col-sm-4 text-center"><h3>{{viewData.kosherStatus | uppercase}}</h3></div>
+    <div class="col-sm-12">
+        <h3>Ingredients:</h3>
+        <div class="row">
+            <div class="col-sm-6" ng-repeat="ingredient in viewData.ingredients">{{ingredient.quantity}} {{ingredient.quantityType}} {{ingredient.name}} {{ingredient.prepMethod}} {{ingredient.note}} {{ingredient.optional}}</div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <h3>Instructions:</h3>
+        <div class="row">
+            <div class="col-sm-12"><span ng-repeat="instruction in viewData.instructions">{{instruction.text}} </span></div>
+        </div>
+    </div>
+    <div class="col-sm-12 text-center"><h3>Notes:</h3>{{viewData.notes}}</div>
+    <div class="col-sm-12 text-center"><h3>Contributor Rating:</h3>{{viewData.authorRating}}/5</div>
+    <div class="col-sm-12">
+        <h3>Categories:</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <kbd ng-repeat="category in viewData.categories">{{category.name}}</kbd> &nbsp; &nbsp;
+            </div>
+        </div>
+    </div>
+</div>

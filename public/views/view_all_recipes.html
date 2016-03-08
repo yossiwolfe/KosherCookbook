@@ -1,0 +1,10 @@
+<!-- public/views/view_all_recipes.html -->
+
+<div class="jumbotron text-center" ng-init="getAllRecipes()">
+    <h1>View All Recipes</h1>
+</div>
+<div>
+    <div ng-repeat="recipe in recipes">
+        <div class="col-xs-4"><a href="/view-recipe/{{recipe._id}}">{{recipe.name}}</a></div>
+    </div>
+</div>
